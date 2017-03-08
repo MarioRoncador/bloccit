@@ -13,6 +13,7 @@ end
 group :development do
   gem 'sqlite3'
   gem 'pry-rails'
+  gem 'shoulda'
 end
 
 group :development, :test do
