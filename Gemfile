@@ -17,7 +17,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.3'
+  gem 'rspec-rails'
 end
 
 # Use SCSS for stylesheets
