@@ -18,6 +18,9 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'sqlite3'
+  gem 'pry-rails'
+  gem 'shoulda'
 end
 
 # Use SCSS for stylesheets
