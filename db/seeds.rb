@@ -66,11 +66,12 @@ end
   )
 end
 
-user = User.first
-user.update_attributes!(
-  email: 'mario.roncador@icloud.com',
-  password: '12345678'
-)
+#user = User.first
+#user.update_attributes!(
+#  name: 'Mario'
+#  email: 'mario.roncador@icloud.com',
+#  password: '12345678'
+#)
 
 
  puts "Seed finished"
