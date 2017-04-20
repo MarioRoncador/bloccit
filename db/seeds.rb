@@ -3,7 +3,7 @@ require 'random_data'
 # Create Users
 5.times do
   User.create!(
-# #3
+  # #3
   name:     RandomData.random_name,
   email:    RandomData.random_email,
   password: RandomData.random_sentence
@@ -14,37 +14,43 @@ users = User.all
 # Create Topics
 15.times do
   Topic.create!(
-    name:         RandomData.random_sentence,
-    description:  RandomData.random_paragraph
+  name:         RandomData.random_sentence,
+  description:  RandomData.random_paragraph
   )
 end
 topics = Topic.all
 
- # Create Posts
- 50.times do
- # #1
-  Post.create!(
-    user:   users.sample,
-    topic: topics.sample,
-    title:  RandomData.random_sentence,
-    body:   RandomData.random_paragraph
-   )
- end
+# Create Posts
+50.times do
+  # #1
+  post = Post.create!(
+  user:   users.sample,
+  topic: topics.sample,
+  title:  RandomData.random_sentence,
+  body:   RandomData.random_paragraph
+  )
+
+  # #12
+  post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+  # #13
+  rand(1..5).times { post.votes.create!(value: [-1, 1].sample, user: users.sample) }
+
+end
 
 
-  Post.find_or_create_by(title: "Favorite Vacation", body:"Where's your favorite vacation spot? Mine is Colorado!")
+Post.find_or_create_by(title: "Favorite Vacation", body:"Where's your favorite vacation spot? Mine is Colorado!")
 
- posts = Post.all
+posts = Post.all
 
- # Create Comments
- # #3
- 100.times do
-   Comment.create!(
-     user: users.sample,
-     post: posts.sample,
-     body: RandomData.random_paragraph
-   )
- end
+# Create Comments
+# #3
+100.times do
+  Comment.create!(
+  user: users.sample,
+  post: posts.sample,
+  body: RandomData.random_paragraph
+  )
+end
 
 #Create questions
 
@@ -57,40 +63,41 @@ topics = Topic.all
 end
 
 50.times do
-# #1
- SponsoredPost.create!(
-# #2
-   topic: topics.sample,
-   title:  RandomData.random_sentence,
-    body:  RandomData.random_paragraph,
+  # #1
+  SponsoredPost.create!(
+  # #2
+  topic: topics.sample,
+  title:  RandomData.random_sentence,
+  body:  RandomData.random_paragraph,
   )
 end
 
 admin = User.create!(
-  name:     'Admin User',
-  email:    'admin@example.com',
-  password: 'helloworld',
-  role:     'admin'
+name:     'Admin User',
+email:    'admin@example.com',
+password: 'helloworld',
+role:     'admin'
 )
 
 member = User.create!(
-  name:     'Member User',
-  email:    'member@example.com',
-  password: 'helloworld'
+name:     'Member User',
+email:    'member@example.com',
+password: 'helloworld'
 )
 
 member = User.create!(
-  name:     'Moderator User',
-  email:    'm@e.com',
-  password: '12345678',
-  role: 'moderator'
+name:     'Moderator User',
+email:    'm@e.com',
+password: '12345678',
+role: 'moderator'
 )
 
 
- puts "Seed finished"
- puts "#{User.count} users created"
- puts "#{SponsoredPost.count} sponsored posts created"
- puts "#{Topic.count} topics created"
- puts "#{Post.count} posts created"
- puts "#{Comment.count} comments created"
- puts "#{Question.count} quesitons created"
+puts "Seed finished"
+puts "#{User.count} users created"
+puts "#{SponsoredPost.count} sponsored posts created"
+puts "#{Topic.count} topics created"
+puts "#{Post.count} posts created"
+puts "#{Comment.count} comments created"
+puts "#{Question.count} quesitons created"
+puts "#{Vote.count} votes created"
