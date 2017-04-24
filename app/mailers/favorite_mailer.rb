@@ -2,26 +2,24 @@ class FavoriteMailer < ApplicationMailer
   default from: "mario.roncador@gmail.com"
 
   def new_comment(user, post, comment)
-
-    # #18
-    headers["Message-ID"] = "<comments/#{comment.id}@your-app-name.example>"
-    headers["In-Reply-To"] = "<post/#{post.id}@your-app-name.example>"
-    headers["References"] = "<post/#{post.id}@your-app-name.example>"
+    headers['Message-ID'] = "<comments/#{comment.id}@your-app-name.example>"
+    headers['In-Reply-To'] = "<post/#{post.id}@your-app-name.example>"
+    headers['References'] = "<post/#{post.id}@your-app-name.example>"
 
     @user = user
     @post = post
     @comment = comment
 
-    # #19
-    mail(to: user.email, cc: 'ryan@ryanbalfanz.net', subject: "New comment on #{post.title}")
+    mail(to: user.email, subject: "New comment on #{post.title}")
   end
 
   def new_post(post)
-    headers["Message-ID"] = "<comments/#{comment.id}@your-app-name.example>"
-    headers["In-Reply-To"] = "<post/#{post.id}@your-app-name.example>"
-    headers["References"] = "<post/#{post.id}@your-app-name.example>"
+    headers['Message-ID'] = "<posts/#{post.id}@your-app-name.example>"
+    headers['In-Reply-To'] = "<post/#{post.id}@your-app-name.example>"
+    headers['References'] = "<post/#{post.id}@your-app-name.example>"
 
     @post = post
-    mail(to: post.user.email, cc: 'ryan@ryanbalfanz.net', subject: "You are following #{post.title}")
+
+    mail(to: post.user.email, subject: "You created a new post: #{post.title}")
   end
 end

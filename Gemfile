@@ -21,6 +21,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'pry-rails'
   gem 'shoulda'
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 # Use SCSS for stylesheets
