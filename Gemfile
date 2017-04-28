@@ -38,4 +38,6 @@ gem 'turbolinks'
 gem 'bootstrap-sass'
 # Used for encrypting User passwords
 gem 'bcrypt'
+# For email
+gem 'figaro', '1.0'
 require 'digest/md5'
